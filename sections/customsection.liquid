@@ -1,0 +1,211 @@
+{%- if section.blocks.size > 0 -%}
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      --testimonials-font-size: calc(clamp(1.125rem, 1.064516129032258rem + 0.25806451612903225vw, 1.25rem) * {{ section.settings.font_size_factor }});
+    }
+  </style>
+
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient
+    | default: section.settings.color_scheme.settings.background
+    | md5
+  -%}
+
+  <div
+    class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
+    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}"
+  >
+    <div class="container">
+      <div class="section-stack">
+        {%- if section.settings.title != blank
+          or section.settings.subheading != blank
+          or section.settings.content != blank
+        -%}
+          {%- render 'section-header',
+            subheading: section.settings.subheading,
+            heading: section.settings.title,
+            content: section.settings.content,
+            text_alignment: 'center'
+          -%}
+        {%- endif -%}
+
+        <div class="customsection-list">
+          {%- for block in section.blocks -%}
+            <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}"{{ block.shopify_attributes }} >
+              {%- if block.settings.block_subheading != blank -%}
+                <div class="h-stack gap-4">
+                  <span class="customsection-subheading-dot"></span>
+                  <div class="h6">
+                    {{- block.settings.block_subheading -}}
+                  </div>
+                </div>
+            
+                {%- endif -%}
+
+                <div class="customsection-image-wrapper text-start gap-4">
+                  {% if block.settings.image == blank %}
+                    {% render 'product-card', product: block.settings.product, hide_product_information: true %}
+                  {% else %}
+                    <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
+                  {% endif %}
+
+                  {% if block.settings.block_link_text  != blank %}
+                  {% unless block.settings.product == blank and block.settings.link_url == blank %}
+                  {% if block.settings.link_url != blank %}
+                    <div>
+                      <a href="{{block.settings.link_url}}" class="h6 link">{{- block.settings.block_link_text-}}</a>
+                    </div>
+                  {% else %}
+                    <div>
+                      <a href="{{block.settings.product.url}}" class="h6 link">{{- block.settings.block_link_text-}}</a> 
+                    </div>
+                  {% endif %}
+                 {% endunless %}
+                  {% endif %}
+
+                </div>
+            </div> 
+
+                <div class="customsection-content-wrapper">
+                  <div class="h2">
+                    {{- block.settings.block_content -}}
+                  </div>
+                </div>
+
+                <div class="customsection-gradient">
+                  gradient
+                </div>
+
+                <div class="customsection-info">
+                  info
+                </div>
+
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom Section",
+  "class": "custom-section",
+  "tag": "section",
+  "max_blocks": 5,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Custom Testimonial",
+      "type": "Testimonial",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "block_subheading",
+          "label": "Subheading",
+          "default":"Testimonials"
+        },
+        {
+          "type": "richtext",
+          "id": "block_content",
+          "label": "Content"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Will take precedence over product main image"
+        },
+        {
+        "type": "text",
+          "id": "block_link_text",
+          "label": "Link text",
+          "default": "View product"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL",
+          "info": "Must be defined for the link text to display"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 0,
+          "max": 5,
+          "default": 3,
+          "step": 1
+        },
+        {
+          "type": "inline_richtext",
+          "id": "author_name",
+          "label": "Author name",
+          "default":"Author's name"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "author_detail",
+          "label": "Author details"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom section",
+      "settings": {
+        "title": "Custom section title"
+      },
+      "blocks": [
+        {
+          "type": "Testimonial"
+        },
+        {
+          "type": "Testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
