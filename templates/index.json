@@ -1,5 +1,42 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
+    "customsection_LQPLBc": {
+      "type": "customsection",
+      "blocks": {
+        "testimonial_URq6iH": {
+          "type": "Testimonial",
+          "settings": {
+            "block_subheading": "Testimonials",
+            "block_content": "<p>ojgodfgdofijgd<\/p>",
+            "product": "",
+            "image": "shopify:\/\/shop_images\/after.webp",
+            "block_link_text": "dfsdfs",
+            "link_url": "shopify:\/\/blogs\/history",
+            "rating": 3,
+            "author_name": "Author's name",
+            "author_detail": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_URq6iH"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "subheading": "do this",
+        "title": "Custom section title",
+        "content": "<p>test<\/p>"
+      }
+    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
@@ -465,48 +502,10 @@
         "button_link": "",
         "button_text": "View all"
       }
-    },
-    "customsection_LQPLBc": {
-      "type": "customsection",
-      "blocks": {
-        "testimonial_jdrcHm": {
-          "type": "Testimonial",
-          "settings": {
-            "block-subheading": "",
-            "block-content": "",
-            "product-1": "",
-            "link-url-1": "",
-            "rating-1": 3,
-            "author-name-1": "",
-            "author-detail-1": ""
-          }
-        },
-        "testimonial_CPqE8t": {
-          "type": "Testimonial",
-          "settings": {
-            "block-subheading": "",
-            "block-content": "",
-            "product-1": "",
-            "link-url-1": "",
-            "rating-1": 3,
-            "author-name-1": "",
-            "author-detail-1": ""
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_jdrcHm",
-        "testimonial_CPqE8t"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "subheading": "test",
-        "title": "Custom section title",
-        "content": "<p>test<\/p>"
-      }
     }
   },
   "order": [
+    "customsection_LQPLBc",
     "slideshow",
     "featured-collections",
     "multi-column",
@@ -516,7 +515,6 @@
     "multiple-media-with-text",
     "newsletter",
     "shop-the-look",
-    "blog-posts",
-    "customsection_LQPLBc"
+    "blog-posts"
   ]
 }

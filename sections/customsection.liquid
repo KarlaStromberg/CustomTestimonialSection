@@ -8,8 +8,10 @@
   <style>
     #shopify-section-{{ section.id }} {
       --testimonials-font-size: calc(clamp(1.125rem, 1.064516129032258rem + 0.25806451612903225vw, 1.25rem) * {{ section.settings.font_size_factor }});
+      --press-quotation-mark-svg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" focusable="false" width="62" fill="none" viewBox="0 0 62 57"><path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" /></svg>');
     }
   </style>
+
 
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
@@ -22,10 +24,8 @@
     | md5
   -%}
 
-  <div
-    class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
-    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}"
-  >
+  <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
+    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
     <div class="container">
       <div class="section-stack">
         {%- if section.settings.title != blank
@@ -46,7 +46,7 @@
               {%- if block.settings.block_subheading != blank -%}
                 <div class="h-stack gap-4">
                   <span class="customsection-subheading-dot"></span>
-                  <div class="h6">
+                  <div class="text-sm bold smallcaps">
                     {{- block.settings.block_subheading -}}
                   </div>
                 </div>
@@ -64,11 +64,11 @@
                   {% unless block.settings.product == blank and block.settings.link_url == blank %}
                   {% if block.settings.link_url != blank %}
                     <div>
-                      <a href="{{block.settings.link_url}}" class="h6 link">{{- block.settings.block_link_text-}}</a>
+                      <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">{{- block.settings.block_link_text-}}</a>
                     </div>
                   {% else %}
                     <div>
-                      <a href="{{block.settings.product.url}}" class="h6 link">{{- block.settings.block_link_text-}}</a> 
+                      <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">{{- block.settings.block_link_text-}}</a> 
                     </div>
                   {% endif %}
                  {% endunless %}
@@ -78,9 +78,12 @@
             </div> 
 
                 <div class="customsection-content-wrapper">
+                  {% if block.settings.block_content  != blank %}
+                    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" width="120" fill="{{block.settings.icon_color}}" viewBox="0 0 62 57"><path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" /></svg>
                   <div class="h2">
                     {{- block.settings.block_content -}}
                   </div>
+                  {% endif %}
                 </div>
 
                 <div class="customsection-gradient">
@@ -95,6 +98,7 @@
         </div>
       </div>
     </div>
+  </div>
 {% endif %}
 
 {% schema %}
@@ -144,6 +148,11 @@
           "type": "richtext",
           "id": "block_content",
           "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon color"
         },
         {
           "type": "product",
