@@ -7653,19 +7653,31 @@ ul {
 
 .customsection-content-wrapper{
   grid-area: 1 / 3 / 3 / 6;
-  background-color: lightcoral;
   max-width: 837px;
   text-indent:30%;
+  display: grid;
+}
+
+.customsection-content-wrapper svg{
+
+  z-index: 1;
+  grid-area: 1 / 2 / 4 / 3;
+}
+
+.customsection-content-wrapper .h2{
+  z-index: 2;
+  line-height: 45px;
+  grid-area: 1 / 1 / 6 / 10; 
 }
 
 
 .customsection-info{
   grid-area: 3 / 3 / 4 / 6;
-  background-color: red;
-
 }
+
 
 .customsection-gradient{
   grid-area: 1 / 6 / 4 / 7;
   background-color: pink;
 }
+

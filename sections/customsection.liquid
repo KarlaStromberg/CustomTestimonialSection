@@ -36,7 +36,7 @@
             subheading: section.settings.subheading,
             heading: section.settings.title,
             content: section.settings.content,
-            text_alignment: 'center'
+            text_alignment: section.settings.content_alignment
           -%}
         {%- endif -%}
 
@@ -79,10 +79,25 @@
 
                 <div class="customsection-content-wrapper">
                   {% if block.settings.block_content  != blank %}
-                    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" width="120" fill="{{block.settings.icon_color}}" viewBox="0 0 62 57"><path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" width="120" fill="{{block.settings.icon_color}}" viewBox="0 0 62 57"><path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" /></svg>
                   <div class="h2">
                     {{- block.settings.block_content -}}
                   </div>
+                  {% endif %}
+                </div>
+
+                <div class="customsection-info">
+               
+                   {% unless block.settings.rating  == 0 %}
+                    Rating will be here
+                   {% endunless %}
+
+                   {% if block.settings.author_name != blank %}
+                   <p class="bold text-base">{{block.settings.author_name}}</p>
+                   {% endif %}
+
+                   {% if block.settings.author_detail != blank %}
+                    <p class="text-subdued"> {{block.settings.author_detail}}</p>
                   {% endif %}
                 </div>
 
@@ -90,9 +105,7 @@
                   gradient
                 </div>
 
-                <div class="customsection-info">
-                  info
-                </div>
+                
 
           {%- endfor -%}
         </div>
@@ -131,6 +144,25 @@
       "type": "richtext",
       "id": "content",
       "label": "Content"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "t:global.position.content_position",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:global.position.left"
+        },
+        {
+          "value": "center",
+          "label": "t:global.position.center"
+        },
+        {
+          "value": "end",
+          "label": "t:global.position.right"
+        }
+      ] 
     }
   ],
   "blocks": [

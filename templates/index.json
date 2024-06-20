@@ -1,12 +1,3 @@
-/*
-* ------------------------------------------------------------
-* IMPORTANT: The contents of this file are auto-generated.
-*
-* This file may be updated by the Shopify admin theme editor
-* or related systems. Please exercise caution as any changes
-* made to this file may be overwritten.
-* ------------------------------------------------------------
-*/
 {
   "sections": {
     "customsection_LQPLBc": {
@@ -15,11 +6,11 @@
         "testimonial_URq6iH": {
           "type": "Testimonial",
           "settings": {
-            "block_subheading": "Testimonials",
-            "block_content": "<p>ojgodfgdofijgd<\/p>",
-            "product": "",
-            "image": "shopify:\/\/shop_images\/after.webp",
-            "block_link_text": "dfsdfs",
+            "block_subheading": "Reviews",
+            "block_content": "<p>The Khyte is a phenomenal display of craftsmanship. It has exceptional weatherproofing, remarkable external access and organization, and outstanding ergonomics.<\/p>",
+            "icon_color": "#dbdbdb",
+            "product": "dainty-gold-neclace",
+            "block_link_text": "View product",
             "link_url": "shopify:\/\/blogs\/history",
             "rating": 3,
             "author_name": "Author's name",
@@ -31,10 +22,10 @@
         "testimonial_URq6iH"
       ],
       "settings": {
-        "color_scheme": "",
-        "subheading": "do this",
-        "title": "Custom section title",
-        "content": "<p>test<\/p>"
+        "color_scheme": "scheme-2",
+        "subheading": "Subheading",
+        "title": "Heading",
+        "content": "<p>Content<\/p>"
       }
     },
     "slideshow": {
