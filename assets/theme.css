@@ -7675,6 +7675,19 @@ ul {
   grid-area: 3 / 3 / 4 / 6;
 }
 
+.custom-rating-badge {
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: normal;
+  display: flex;
+}
+
+.custom-rating-badge__stars {
+  column-gap: .125rem;
+  display: flex;
+  position: relative;
+  top: -10px;
+}
 
 .customsection-gradient{
   grid-area: 1 / 6 / 4 / 7;

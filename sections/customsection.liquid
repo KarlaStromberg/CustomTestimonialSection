@@ -12,7 +12,6 @@
     }
   </style>
 
-
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
     LIQUID
@@ -24,9 +23,11 @@
     | md5
   -%}
 
-  <div class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
-    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
-    <div class="container">
+  <div
+    class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
+    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}"
+  >
+    <div class="container container--lg">
       <div class="section-stack">
         {%- if section.settings.title != blank
           or section.settings.subheading != blank
@@ -42,7 +43,10 @@
 
         <div class="customsection-list">
           {%- for block in section.blocks -%}
-            <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}"{{ block.shopify_attributes }} >
+            <div
+              class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}"
+              {{ block.shopify_attributes }}
+            >
               {%- if block.settings.block_subheading != blank -%}
                 <div class="h-stack gap-4">
                   <span class="customsection-subheading-dot"></span>
@@ -50,63 +54,75 @@
                     {{- block.settings.block_subheading -}}
                   </div>
                 </div>
-            
-                {%- endif -%}
+              {%- endif -%}
 
-                <div class="customsection-image-wrapper text-start gap-4">
-                  {% if block.settings.image == blank %}
-                    {% render 'product-card', product: block.settings.product, hide_product_information: true %}
-                  {% else %}
-                    <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
-                  {% endif %}
+              <div class="customsection-image-wrapper text-start gap-4">
+                {% if block.settings.image == blank %}
+                  {% render 'product-card', product: block.settings.product, hide_product_information: true %}
+                {% else %}
+                  <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
+                {% endif %}
 
-                  {% if block.settings.block_link_text  != blank %}
+                {% if block.settings.block_link_text != blank %}
                   {% unless block.settings.product == blank and block.settings.link_url == blank %}
-                  {% if block.settings.link_url != blank %}
-                    <div>
-                      <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">{{- block.settings.block_link_text-}}</a>
-                    </div>
-                  {% else %}
-                    <div>
-                      <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">{{- block.settings.block_link_text-}}</a> 
-                    </div>
-                  {% endif %}
-                 {% endunless %}
-                  {% endif %}
+                    {% if block.settings.link_url != blank %}
+                      <div>
+                        <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">
+                          {{- block.settings['block_link_text-'] -}}
+                        </a>
+                      </div>
+                    {% else %}
+                      <div>
+                        <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">
+                          {{- block.settings['block_link_text-'] -}}
+                        </a>
+                      </div>
+                    {% endif %}
+                  {% endunless %}
+                {% endif %}
+              </div>
+            </div>
 
+            <div class="customsection-content-wrapper">
+              {% if block.settings.block_content != blank %}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  focusable="false"
+                  width="120"
+                  fill="{{block.settings.icon_color}}"
+                  viewBox="0 0 62 57"
+                >
+                  <path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" />
+                </svg>
+                <div class="h2">
+                  {{- block.settings.block_content -}}
                 </div>
-            </div> 
+              {% endif %}
+            </div>
 
-                <div class="customsection-content-wrapper">
-                  {% if block.settings.block_content  != blank %}
-                  <svg xmlns="http://www.w3.org/2000/svg" focusable="false" width="120" fill="{{block.settings.icon_color}}" viewBox="0 0 62 57"><path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" /></svg>
-                  <div class="h2">
-                    {{- block.settings.block_content -}}
-                  </div>
-                  {% endif %}
-                </div>
+            <div class="customsection-info">
+              <div class="custom-rating-badge">
+                {% if block.settings.show_rating %}
+                  {%- for i in (1..5) -%}
+                    {%- if i <= block.settings.rating -%}
+                      {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
+                    {%- else -%}
+                      {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {% endif %}
+              </div>
 
-                <div class="customsection-info">
-               
-                   {% unless block.settings.rating  == 0 %}
-                    Rating will be here
-                   {% endunless %}
+              {% if block.settings.author_name != blank %}
+                <p class="bold text-base">{{ block.settings.author_name }}</p>
+              {% endif %}
 
-                   {% if block.settings.author_name != blank %}
-                   <p class="bold text-base">{{block.settings.author_name}}</p>
-                   {% endif %}
+              {% if block.settings.author_detail != blank %}
+                <p class="text-subdued">{{ block.settings.author_detail }}</p>
+              {% endif %}
+            </div>
 
-                   {% if block.settings.author_detail != blank %}
-                    <p class="text-subdued"> {{block.settings.author_detail}}</p>
-                  {% endif %}
-                </div>
-
-                <div class="customsection-gradient">
-                  gradient
-                </div>
-
-                
-
+            <div class="customsection-gradient">gradient</div>
           {%- endfor -%}
         </div>
       </div>
@@ -162,7 +178,7 @@
           "value": "end",
           "label": "t:global.position.right"
         }
-      ] 
+      ]
     }
   ],
   "blocks": [
@@ -174,7 +190,7 @@
           "type": "inline_richtext",
           "id": "block_subheading",
           "label": "Subheading",
-          "default":"Testimonials"
+          "default": "Testimonials"
         },
         {
           "type": "richtext",
@@ -198,7 +214,7 @@
           "info": "Will take precedence over product main image"
         },
         {
-        "type": "text",
+          "type": "text",
           "id": "block_link_text",
           "label": "Link text",
           "default": "View product"
@@ -208,6 +224,12 @@
           "id": "link_url",
           "label": "Link URL",
           "info": "Must be defined for the link text to display"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show Rating",
+          "default": true
         },
         {
           "type": "range",
@@ -222,7 +244,7 @@
           "type": "inline_richtext",
           "id": "author_name",
           "label": "Author name",
-          "default":"Author's name"
+          "default": "Author's name"
         },
         {
           "type": "inline_richtext",

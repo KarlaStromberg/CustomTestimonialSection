@@ -13,8 +13,8 @@
             "block_link_text": "View product",
             "link_url": "shopify:\/\/blogs\/history",
             "rating": 3,
-            "author_name": "Author's name",
-            "author_detail": ""
+            "author_name": "Lebron James",
+            "author_detail": "Carryology"
           }
         }
       },
@@ -25,7 +25,8 @@
         "color_scheme": "scheme-2",
         "subheading": "Subheading",
         "title": "Heading",
-        "content": "<p>Content<\/p>"
+        "content": "<p>Content<\/p>",
+        "content_alignment": "start"
       }
     },
     "slideshow": {
