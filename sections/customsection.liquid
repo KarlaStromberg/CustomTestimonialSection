@@ -23,10 +23,7 @@
     | md5
   -%}
 
-  <div
-    class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}"
-    style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}"
-  >
+<div  class="section-spacing color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color %}">
     <div class="container container--lg">
       <div class="section-stack">
         {%- if section.settings.title != blank
@@ -41,94 +38,112 @@
           -%}
         {%- endif -%}
 
+        
+          
+
         <div class="customsection-list">
-          {%- for block in section.blocks -%}
-            <div
-              class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              {%- if block.settings.block_subheading != blank -%}
-                <div class="h-stack gap-4">
-                  <span class="customsection-subheading-dot"></span>
-                  <div class="text-sm bold smallcaps">
-                    {{- block.settings.block_subheading -}}
-                  </div>
-                </div>
-              {%- endif -%}
+          {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-              <div class="customsection-image-wrapper text-start gap-4">
-                {% if block.settings.image == blank %}
-                  {% render 'product-card', product: block.settings.product, hide_product_information: true %}
-                {% else %}
-                  <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
-                {% endif %}
+          <customsection-carousel allow-swipe class="customsection-carousel" id="{{ carousel_id }}">
 
-                {% if block.settings.block_link_text != blank %}
-                  {% unless block.settings.product == blank and block.settings.link_url == blank %}
-                    {% if block.settings.link_url != blank %}
-                      <div>
-                        <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">
-                          {{- block.settings['block_link_text-'] -}}
-                        </a>
+            {%- for block in section.blocks -%}
+                <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
+                  <div class="customsection-wrapper">
+                    {%- if block.settings.block_subheading != blank -%}
+                      <div class="h-stack gap-4">
+                        <span class="customsection-subheading-dot"></span>
+                        <div class="text-sm bold smallcaps">
+                          {{- block.settings.block_subheading -}}
+                        </div>
                       </div>
-                    {% else %}
-                      <div>
-                        <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">
-                          {{- block.settings['block_link_text-'] -}}
-                        </a>
+                    {%- endif -%}
+
+                    <div class="customsection-image-wrapper text-start gap-4">
+                      {% if block.settings.image == blank %}
+                        {% render 'product-card', product: block.settings.product, hide_product_information: true %}
+                      {% else %}
+                        <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
+                      {% endif %}
+
+                      {% if block.settings.block_link_text != blank %}
+                        {% unless block.settings.product == blank and block.settings.link_url == blank %}
+                          {% if block.settings.link_url != blank %}
+                            <div>
+                              <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">
+                                {{- block.settings['block_link_text-'] -}}
+                              </a>
+                            </div>
+                          {% else %}
+                            <div>
+                              <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">
+                                {{- block.settings['block_link_text-'] -}}
+                              </a>
+                            </div>
+                          {% endif %}
+                        {% endunless %}
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="customsection-content-wrapper">
+                    {% if block.settings.block_content != blank %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        focusable="false"
+                        width="120"
+                        fill="{{block.settings.icon_color}}"
+                        viewBox="0 0 62 57"
+                      >
+                        <path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" />
+                      </svg>
+                      <div class="h2">
+                        {{- block.settings.block_content -}}
                       </div>
                     {% endif %}
-                  {% endunless %}
-                {% endif %}
-              </div>
-            </div>
+                  </div>
 
-            <div class="customsection-content-wrapper">
-              {% if block.settings.block_content != blank %}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  focusable="false"
-                  width="120"
-                  fill="{{block.settings.icon_color}}"
-                  viewBox="0 0 62 57"
-                >
-                  <path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" />
-                </svg>
-                <div class="h2">
-                  {{- block.settings.block_content -}}
+                  <div class="customsection-info">
+                    <div class="custom-rating-badge">
+                      {% if block.settings.show_rating %}
+                        {%- for i in (1..5) -%}
+                          {%- if i <= block.settings.rating -%}
+                            {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
+                          {%- else -%}
+                            {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {% endif %}
+                    </div>
+
+                    {% if block.settings.author_name != blank %}
+                      <p class="bold text-base">{{ block.settings.author_name }}</p>
+                    {% endif %}
+
+                    {% if block.settings.author_detail != blank %}
+                      <p class="text-subdued">{{ block.settings.author_detail }}</p>
+                    {% endif %}
+                  </div>
+
+                  <div class="customsection-gradient">gradient</div>
                 </div>
-              {% endif %}
-            </div>
+             {%- endfor -%}
+          </customsection-carousel>
 
-            <div class="customsection-info">
-              <div class="custom-rating-badge">
-                {% if block.settings.show_rating %}
-                  {%- for i in (1..5) -%}
-                    {%- if i <= block.settings.rating -%}
-                      {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
-                    {%- else -%}
-                      {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                {% endif %}
-              </div>
-
-              {% if block.settings.author_name != blank %}
-                <p class="bold text-base">{{ block.settings.author_name }}</p>
-              {% endif %}
-
-              {% if block.settings.author_detail != blank %}
-                <p class="text-subdued">{{ block.settings.author_detail }}</p>
-              {% endif %}
-            </div>
-
-            <div class="customsection-gradient">gradient</div>
-          {%- endfor -%}
-        </div>
+            {%- if section.blocks.size > 1 -%}
+              <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots">
+                {%- for i in (1..section.blocks.size) -%}
+                  <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
+                    <span class="sr-only">{{- 'general.accessibility.go_to_item' | t: index: forloop.index -}}</span>
+                  </button>
+              {%- endfor -%}
+            </carousel-navigation>
+          {%- endif -%}
+        </div> 
       </div>
     </div>
-  </div>
-{% endif %}
+</div>
+ {%- endif -%}
+
 
 {% schema %}
 {

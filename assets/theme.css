@@ -7627,11 +7627,23 @@ ul {
 
 .customsection-item {
   font-size: var(--testimonials-font-size);
-  grid-area: 1 / 1 / 4 / 2;
+  grid-area: 1 / -1;
   align-content: start;
-  justify-items: left;
+  justify-items: center;
   gap: 2rem;
-  max-width: 34rem;
+  display: grid;
+}
+
+.customsection-wrapper {
+  grid-area: 1 / 1 / 4 / 2;
+}
+
+.customsection-item:not(.is-selected) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.customsection-carousel {
   display: grid;
 }
 
