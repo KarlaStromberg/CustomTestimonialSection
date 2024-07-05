@@ -70,7 +70,7 @@
                           {% if block.settings.link_url != blank %}
                             <div>
                               <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">
-                                {{- block.settings['block_link_text-'] -}}
+                                {{- block.settings.block_link_text -}}
                               </a>
                             </div>
                           {% else %}
@@ -100,31 +100,31 @@
                         {{- block.settings.block_content -}}
                       </div>
                     {% endif %}
-                  </div>
+                    </div>
 
-                  <div class="customsection-info">
-                    <div class="custom-rating-badge">
-                      {% if block.settings.show_rating %}
-                        {%- for i in (1..5) -%}
-                          {%- if i <= block.settings.rating -%}
-                            {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
-                          {%- else -%}
-                            {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
-                          {%- endif -%}
-                        {%- endfor -%}
+                    <div class="customsection-info">
+                        <div class="custom-rating-badge">
+                          {% if block.settings.show_rating %}
+                            {%- for i in (1..5) -%}
+                              {%- if i <= block.settings.rating -%}
+                                {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
+                              {%- else -%}
+                                {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {% endif %}
+                      </div>
+
+                      {% if block.settings.author_name != blank %}
+                        <p class="bold text-base">{{ block.settings.author_name }}</p>
+                      {% endif %}
+
+                      {% if block.settings.author_detail != blank %}
+                        <p class="text-subdued">{{ block.settings.author_detail }}</p>
                       {% endif %}
                     </div>
 
-                    {% if block.settings.author_name != blank %}
-                      <p class="bold text-base">{{ block.settings.author_name }}</p>
-                    {% endif %}
-
-                    {% if block.settings.author_detail != blank %}
-                      <p class="text-subdued">{{ block.settings.author_detail }}</p>
-                    {% endif %}
-                  </div>
-
-                  <div class="customsection-gradient">gradient</div>
+                    <div class="customsection-gradient">gradient</div>
                 </div>
              {%- endfor -%}
           </customsection-carousel>
@@ -210,12 +210,14 @@
         {
           "type": "richtext",
           "id": "block_content",
-          "label": "Content"
+          "label": "Content",
+          "default": "<p>Write a testimonial about your products</p>"
         },
         {
           "type": "color",
           "id": "icon_color",
-          "label": "Icon color"
+          "label": "Icon color",
+          "default": "#DBDBDB"
         },
         {
           "type": "product",
