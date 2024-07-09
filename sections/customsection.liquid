@@ -48,9 +48,9 @@
 
             {%- for block in section.blocks -%}
                 <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
-                  <div class="customsection-wrapper">
+                  <div class="customsection-wrapper gap-4">
                     {%- if block.settings.block_subheading != blank -%}
-                      <div class="h-stack gap-4">
+                      <div class="h-stack gap-4 ">
                         <span class="customsection-subheading-dot"></span>
                         <div class="text-sm bold smallcaps">
                           {{- block.settings.block_subheading -}}
@@ -59,10 +59,12 @@
                     {%- endif -%}
 
                     <div class="customsection-image-wrapper text-start gap-4">
-                      {% if block.settings.image == blank %}
-                        {% render 'product-card', product: block.settings.product, hide_product_information: true %}
-                      {% else %}
-                        <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
+                      {% if block.settings.image == blank and block.settings.product == blank %}
+                          {%- render 'product-card-placeholder', loop_index: forloop.index0, hide_product_information: true, width:16.875rem-%}
+                        {% elsif block.settings.image == blank %}
+                          {% render 'product-card', product: block.settings.product, hide_product_information: true %}
+                        {% else %}
+                          <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
                       {% endif %}
 
                       {% if block.settings.block_link_text != blank %}
@@ -70,13 +72,13 @@
                           {% if block.settings.link_url != blank %}
                             <div>
                               <a href="{{block.settings.link_url}}" class="text-sm link bold smallcaps">
-                                {{- block.settings['block_link_text-'] -}}
+                                {{- block.settings.block_link_text -}}
                               </a>
                             </div>
                           {% else %}
                             <div>
                               <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">
-                                {{- block.settings['block_link_text-'] -}}
+                                {{- block.settings.block_link_text -}}
                               </a>
                             </div>
                           {% endif %}
@@ -100,31 +102,31 @@
                         {{- block.settings.block_content -}}
                       </div>
                     {% endif %}
-                  </div>
+                    </div>
 
-                  <div class="customsection-info">
-                    <div class="custom-rating-badge">
-                      {% if block.settings.show_rating %}
-                        {%- for i in (1..5) -%}
-                          {%- if i <= block.settings.rating -%}
-                            {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
-                          {%- else -%}
-                            {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
-                          {%- endif -%}
-                        {%- endfor -%}
+                    <div class="customsection-info">
+                        <div class="custom-rating-badge">
+                          {% if block.settings.show_rating %}
+                            {%- for i in (1..5) -%}
+                              {%- if i <= block.settings.rating -%}
+                                {%- render 'icon' with 'star-rating', class: 'custom-rating-badge__stars', width: 15 -%}
+                              {%- else -%}
+                                {%- render 'icon' with 'star-rating-empty', class: 'custom-rating-badge__stars', width: 15 -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          {% endif %}
+                      </div>
+
+                      {% if block.settings.author_name != blank %}
+                        <p class="bold text-base">{{ block.settings.author_name }}</p>
+                      {% endif %}
+
+                      {% if block.settings.author_detail != blank %}
+                        <p class="text-subdued">{{ block.settings.author_detail }}</p>
                       {% endif %}
                     </div>
 
-                    {% if block.settings.author_name != blank %}
-                      <p class="bold text-base">{{ block.settings.author_name }}</p>
-                    {% endif %}
-
-                    {% if block.settings.author_detail != blank %}
-                      <p class="text-subdued">{{ block.settings.author_detail }}</p>
-                    {% endif %}
-                  </div>
-
-                  <div class="customsection-gradient">gradient</div>
+                    <div class="customsection-gradient">gradient</div>
                 </div>
              {%- endfor -%}
           </customsection-carousel>
@@ -210,12 +212,14 @@
         {
           "type": "richtext",
           "id": "block_content",
-          "label": "Content"
+          "label": "Content",
+          "default": "<p>Write a testimonial about your products</p>"
         },
         {
           "type": "color",
           "id": "icon_color",
-          "label": "Icon color"
+          "label": "Icon color",
+          "default": "#DBDBDB"
         },
         {
           "type": "product",
