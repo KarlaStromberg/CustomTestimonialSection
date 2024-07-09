@@ -7619,30 +7619,28 @@ ul {
   overflow: hidden;
 }
 
-
-
 .customsection-list {
   justify-items: right;
   display: grid;
 }
 
  .customsection-item {
-  grid-area: 1 / -1;
-  align-content: end;
+  grid-area:1/-1;
+  align-content: center;
   gap: 2rem;  
   display: grid;
 } 
 
+
 .customsection-wrapper {
-  display: grid;
-  gap:1rem;
+  display:grid;
   grid-area: 1 / 1 / 4 / 2;
 }
 
 .customsection-item:not(.is-selected) {
   opacity: 0;
   visibility: hidden;
-}
+ }
 
 .customsection-carousel {
   display: grid;

@@ -48,9 +48,9 @@
 
             {%- for block in section.blocks -%}
                 <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
-                  <div class="customsection-wrapper">
+                  <div class="customsection-wrapper gap-4">
                     {%- if block.settings.block_subheading != blank -%}
-                      <div class="h-stack gap-4">
+                      <div class="h-stack gap-4 ">
                         <span class="customsection-subheading-dot"></span>
                         <div class="text-sm bold smallcaps">
                           {{- block.settings.block_subheading -}}
@@ -59,10 +59,12 @@
                     {%- endif -%}
 
                     <div class="customsection-image-wrapper text-start gap-4">
-                      {% if block.settings.image == blank %}
-                        {% render 'product-card', product: block.settings.product, hide_product_information: true %}
-                      {% else %}
-                        <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
+                      {% if block.settings.image == blank and block.settings.product == blank %}
+                          {%- render 'product-card-placeholder', loop_index: forloop.index0, hide_product_information: true, width:16.875rem-%}
+                        {% elsif block.settings.image == blank %}
+                          {% render 'product-card', product: block.settings.product, hide_product_information: true %}
+                        {% else %}
+                          <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
                       {% endif %}
 
                       {% if block.settings.block_link_text != blank %}
@@ -76,7 +78,7 @@
                           {% else %}
                             <div>
                               <a href="{{block.settings.product.url}}" class="text-sm link bold smallcaps">
-                                {{- block.settings['block_link_text-'] -}}
+                                {{- block.settings.block_link_text -}}
                               </a>
                             </div>
                           {% endif %}
