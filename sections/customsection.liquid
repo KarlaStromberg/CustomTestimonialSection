@@ -126,7 +126,23 @@
                       {% endif %}
                     </div>
 
-                    <div class="customsection-gradient">gradient</div>
+                    
+
+                    <div class="customsection-gradient">
+                      {% if section.blocks.size > 1 %}
+                        {% assign next_index = forloop.index | plus:1 %}
+                        {% assign blocks = section.blocks %}
+
+                        {% unless forloop.last  %}
+                          {% for block in blocks %}
+                            {% if forloop.index == next_index %}
+                              {{ block.settings.block_content }}
+                            {% endif %}
+                          {% endfor %}
+                        {% endunless %}
+                    {% endif %}
+
+                    </div>
                 </div>
              {%- endfor -%}
           </customsection-carousel>
