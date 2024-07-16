@@ -99,7 +99,7 @@
                         <path fill="%23000" d="M.79 31.904 11.924.816h12.296l-8.12 31.088h7.888V56.96H.79V31.904Zm37.351 0L49.277.816h12.064l-8.12 31.088h7.888V56.96H38.141V31.904Z" />
                       </svg>
                       <div class="h2">
-                        {{- block.settings.block_content -}}
+                       {{- block.settings.block_content -}} 
                       </div>
                     {% endif %}
                     </div>
@@ -126,7 +126,23 @@
                       {% endif %}
                     </div>
 
-                    <div class="customsection-gradient">gradient</div>
+                    
+
+                    <div class="customsection-gradient">
+                      {% if section.blocks.size > 1 %}
+                        {% assign next_index = forloop.index | plus:1 %}
+                        {% assign blocks = section.blocks %}
+
+                        {% unless forloop.last  %}
+                          {% for block in blocks %}
+                            {% if forloop.index == next_index %}
+                             <div class="h2 customsection-content-inner">{{ block.settings.block_content }} </div> 
+                            {% endif %}
+                          {% endfor %}
+                        {% endunless %}
+                    {% endif %}
+
+                    </div>
                 </div>
              {%- endfor -%}
           </customsection-carousel>
