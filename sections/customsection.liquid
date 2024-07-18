@@ -50,11 +50,13 @@
                 <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
                   <div class="customsection-wrapper gap-4">
                     {%- if block.settings.block_subheading != blank -%}
-                      <div class="h-stack gap-4 ">
+                      <div class="customsection-subheading">
+                      <div class="h-stack gap-4">
                         <span class="customsection-subheading-dot"></span>
                         <div class="text-sm bold smallcaps">
                           {{- block.settings.block_subheading -}}
                         </div>
+                      </div>
                       </div>
                     {%- endif -%}
 
@@ -66,7 +68,7 @@
                         {% else %}
                           <image src="{{- block.settings.image | image_url: width: 400 -}}"></image>
                       {% endif %}
-
+                    
                       {% if block.settings.block_link_text != blank %}
                         {% unless block.settings.product == blank and block.settings.link_url == blank %}
                           {% if block.settings.link_url != blank %}
@@ -84,6 +86,7 @@
                           {% endif %}
                         {% endunless %}
                       {% endif %}
+                    
                     </div>
                   </div>
 
@@ -151,7 +154,7 @@
               <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots">
                 {%- for i in (1..section.blocks.size) -%}
                   <button class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'general.accessibility.go_to_item' | t: index: forloop.index | escape }}">
-                    <span class="sr-only">{{- 'general.accessibility.go_to_item' | t: index: forloop.index -}}</span>
+                    <span class="sr-only ">{{- 'general.accessibility.go_to_item' | t: index: forloop.index -}}</span>
                   </button>
               {%- endfor -%}
             </carousel-navigation>
@@ -177,7 +180,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "scheme-3"
+      "default": "scheme-2"
     },
     {
       "type": "inline_richtext",
