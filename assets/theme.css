@@ -7626,7 +7626,6 @@ ul {
 
  .customsection-item {
   grid-area:1/-1;
-  align-content: center;
   gap: 2rem;  
   display: grid;
 } 
@@ -7634,7 +7633,7 @@ ul {
 
 .customsection-wrapper {
   display:grid;
-  grid-area: 1 / 1 / 4 / 2;
+  grid-area: 1 / 1 / 4 / 2; 
 }
 
 .customsection-item:not(.is-selected) {
@@ -7644,7 +7643,11 @@ ul {
 
 
 .customsection-carousel {
-  display: grid;
+   display: grid; 
+}
+
+.customsection-subheading{
+  align-items: start;
 }
 
 .customsection-subheading-dot {
@@ -7658,7 +7661,7 @@ ul {
 .customsection-image-wrapper {
   position: relative;
   overflow: hidden;
-  width: 16.875rem;
+  width: 14rem;
   display: flex;
   flex-direction: column;
 }
