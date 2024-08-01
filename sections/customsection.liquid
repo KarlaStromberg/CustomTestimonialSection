@@ -1,4 +1,5 @@
 {%- if section.blocks.size > 0 -%}
+
   {%- comment -%}
     ------------------------------------------------------------------------------------------------------------------------
     CSS
@@ -44,10 +45,13 @@
         <div class="customsection-list">
           {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-          <customsection-carousel allow-swipe class="customsection-carousel" id="{{ carousel_id }}">
+          <customsection-carousel allow-swipe class="customsection-carousel" id="{{ carousel_id }}" >
 
             {%- for block in section.blocks -%}
-                <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
+              <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
+
+                <div class="{% if device == 'mobile' %}md{% else %}md-max{% endif %}:hidden">
+
                   <div class="customsection-wrapper gap-4">
                     {%- if block.settings.block_subheading != blank -%}
                       <div class="customsection-subheading">
@@ -60,6 +64,7 @@
                       </div>
                     {%- endif -%}
 
+                    
                     <div class="customsection-image-wrapper text-start gap-4">
                       {% if block.settings.image == blank and block.settings.product == blank %}
                           {%- render 'product-card-placeholder', loop_index: forloop.index0, hide_product_information: true, width:16.875rem-%}
@@ -89,6 +94,7 @@
                     
                     </div>
                   </div>
+                </div>
 
                   <div class="customsection-content-wrapper">
                     {% if block.settings.block_content != blank %}
@@ -129,8 +135,8 @@
                       {% endif %}
                     </div>
 
-                    
-
+                  
+                
                     <div class="customsection-gradient">
                       {% if section.blocks.size > 1 %}
                         {% assign next_index = forloop.index | plus:1 %}
