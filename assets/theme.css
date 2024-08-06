@@ -7671,6 +7671,7 @@ ul {
   max-width: 837px; 
   text-indent:30%;
   display: grid;
+  height: fit-content;
 }
 
 .customsection-content-wrapper svg{
@@ -7680,7 +7681,7 @@ ul {
 
 .customsection-content-wrapper .h2{
   z-index: 2;
-  line-height: 45px;
+  line-height: 1;
   grid-area: 1 / 1 / 1 / 10; 
 }
 
@@ -7708,6 +7709,7 @@ ul {
 .customsection-gradient{
   grid-area: 1 / 10 / 4 / 12;
   overflow: hidden;
+  height: fit-content;
 }
 
 .customsection-content-inner {
@@ -7716,6 +7718,7 @@ ul {
   background-image: linear-gradient(to right, rgb(var(--text-color) / .35) 0% ,rgba(0,0,0,0) 19%);
   color: transparent;
   background-clip: text;
+  line-height: 1;
 }
 
 
@@ -7726,7 +7729,7 @@ ul {
     }
 
     .customsection-content-wrapper .h2, .customsection-gradient .h2{
-      line-height: 25px;
+      line-height: 1;
       font-size:23px;
       text-align:left
     }
