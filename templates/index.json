@@ -12,14 +12,31 @@
             "product": "dainty-gold-neclace",
             "block_link_text": "View product",
             "link_url": "shopify:\/\/blogs\/history",
+            "show_rating": true,
             "rating": 3,
             "author_name": "Lebron James",
             "author_detail": "Carryology"
           }
+        },
+        "testimonial_QHUdtq": {
+          "type": "Testimonial",
+          "settings": {
+            "block_subheading": "Testimonials",
+            "block_content": "<p>Now what are the possibilities of warp drive? Cmdr Riker's nervous system has been invaded by an unknown microorganism. The organisms fuse to the nerve, intertwining at the molecular level. <\/p>",
+            "icon_color": "#DBDBDB",
+            "product": "",
+            "block_link_text": "View product",
+            "link_url": "",
+            "show_rating": true,
+            "rating": 3,
+            "author_name": "Author's name",
+            "author_detail": ""
+          }
         }
       },
       "block_order": [
-        "testimonial_URq6iH"
+        "testimonial_URq6iH",
+        "testimonial_QHUdtq"
       ],
       "settings": {
         "color_scheme": "scheme-2",
