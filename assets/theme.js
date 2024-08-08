@@ -6171,7 +6171,7 @@ if (!window.customElements.get("testimonial-carousel")) {
 
 // js/sections/CustomSection.js
 import { animate as animate28 } from "vendor";
-var CustomSectionCarousel = class extends EffectCarousel {
+var TestimonialsWithImageCarousel = class extends EffectCarousel {
   createOnChangeAnimationControls(fromSlide, toSlide, { direction }) {
     return {
       leaveControls: () => animate28(fromSlide, { opacity: [1, 0], transform: ["translateY(0)", "translateY(-15px)"] }, { duration: 0.4, easing: [0.55, 0.055, 0.675, 0.19] }),
@@ -6179,8 +6179,8 @@ var CustomSectionCarousel = class extends EffectCarousel {
     };
   }
 };
-if (!window.customElements.get("customsection-carousel")) {
-  window.customElements.define("customsection-carousel", CustomSectionCarousel);
+if (!window.customElements.get("testimonials-with-image-carousel")) {
+  window.customElements.define("testimonials-with-image-carousel", TestimonialsWithImageCarousel);
 }
 
 // js/sections/text-with-icons.js
@@ -6349,7 +6349,7 @@ export {
   SoldOutBadge,
   Tabs,
   TestimonialCarousel,
-  CustomSectionCarousel,
+  TestimonialsWithImageCarousel,
   TextWithIconsCarousel,
   TimelineCarousel,
   UnitPrice,

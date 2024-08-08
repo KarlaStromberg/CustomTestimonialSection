@@ -41,21 +41,21 @@
         
           
 
-        <div class="customsection-list">
+        <div class="testimonials-with-image-list">
           {%- assign carousel_id = 'carousel-' | append: section.id -%}
 
-          <customsection-carousel allow-swipe class="customsection-carousel" id="{{ carousel_id }}" >
+          <testimonials-with-image-carousel allow-swipe class="testimonials-with-image-carousel" id="{{ carousel_id }}" >
 
             {%- for block in section.blocks -%}
-              <div class="customsection-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
+              <div class="testimonials-with-image-item text-center {% if forloop.first %}is-selected{% endif %}" {{ block.shopify_attributes }}>
 
-                <div class="customsection-wrapper">
+                <div class="testimonials-with-image-product-wrapper">
                   <div class="{% if device == 'mobile' %}md{% else %}md-max{% endif %}:hidden">
                     
                       {%- if block.settings.block_subheading != blank -%}
-                        <div class="customsection-subheading">
+                        <div class="testimonials-with-image-subheading">
                         <div class="h-stack gap-4">
-                          <span class="customsection-subheading-dot"></span>
+                          <span class="testimonials-with-image-subheading-dot"></span>
                           <div class="text-sm bold smallcaps">
                             {{- block.settings.block_subheading -}}
                           </div>
@@ -63,7 +63,7 @@
                         </div>
                       {%- endif -%}
 
-                      <div class="customsection-image-wrapper text-start gap-4">
+                      <div class="testimonials-with-image-image-wrapper text-start gap-4">
                         {% if block.settings.image == blank and block.settings.product == blank %}
                             {%- render 'product-card-placeholder', loop_index: forloop.index0, hide_product_information: true, width:16.875rem-%}
                           {% elsif block.settings.image == blank %}
@@ -94,7 +94,7 @@
                   </div>
                 </div>
 
-                  <div class="customsection-content-wrapper">
+                  <div class="testimonials-with-image-content-wrapper">
                     {% if block.settings.block_content != blank %}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@
                     {% endif %}
                     </div>
 
-                    <div class="customsection-info">
+                    <div class="testimonials-with-image-info">
                         <div class="custom-rating-badge">
                           {% if block.settings.show_rating %}
                             {%- for i in (1..5) -%}
@@ -135,7 +135,7 @@
 
                   
                 
-                    <div class="customsection-gradient">
+                    <div class="testimonials-with-image-gradient">
                       {% if section.blocks.size > 1 %}
                         {% assign next_index = forloop.index | plus:1 %}
                         {% assign blocks = section.blocks %}
@@ -143,7 +143,7 @@
                         {% unless forloop.last  %}
                           {% for block in blocks %}
                             {% if forloop.index == next_index %}
-                             <div class="h2 customsection-content-inner">{{ block.settings.block_content }} </div> 
+                             <div class="h2 testimonials-with-image-content-inner">{{ block.settings.block_content }} </div> 
                             {% endif %}
                           {% endfor %}
                         {% endunless %}
@@ -152,7 +152,7 @@
                     </div>
                 </div>
              {%- endfor -%}
-          </customsection-carousel>
+          </testimonials-with-image-carousel>
 
             {%- if section.blocks.size > 1 -%}
               <carousel-navigation aria-controls="{{ carousel_id }}" class="page-dots">
