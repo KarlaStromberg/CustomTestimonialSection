@@ -7619,38 +7619,37 @@ ul {
   overflow: hidden;
 }
 
-.customsection-list {
+/* Custom CSS for "Testimonials with product" section below */
+
+.testimonials-with-image-list {
   justify-items: right;
   display: grid;
 }
 
- .customsection-item {
-  grid-area:1/-1;
-  gap: 2rem;  
+.testimonials-with-image-item {
+  grid-area: 1/-1;
+  gap: 2rem;
   display: grid;
-} 
-
-
-.customsection-wrapper {
-  display:grid;
-  grid-area: 1 / 1 / 4 / 2; 
 }
 
-.customsection-item:not(.is-selected) {
-  opacity: 0; 
+.testimonials-with-image-product-wrapper {
+  grid-area: 1 / 1 / 4 / 2;
+}
+
+.testimonials-with-image-item:not(.is-selected) {
+  opacity: 0;
   visibility: hidden;
- }
-
-
-.customsection-carousel {
-   display: grid; 
 }
 
-.customsection-subheading{
-  align-items: start;
+.testimonials-with-image-carousel {
+  display: grid;
 }
 
-.customsection-subheading-dot {
+.testimonials-with-image-subheading {
+  margin-bottom: 1rem;
+}
+
+.testimonials-with-image-subheading-dot {
   --dot-size: .40rem;
   width: var(--dot-size);
   height: var(--dot-size);
@@ -7658,44 +7657,36 @@ ul {
   border-radius: 100%;
 }
 
-.customsection-image-wrapper {
-  position: relative;
-  overflow: hidden;
+.testimonials-with-image-image-wrapper {
   width: 14rem;
   display: flex;
   flex-direction: column;
 }
 
-.customsection-content-wrapper{
+.testimonials-with-image-content-wrapper {
   grid-area: 1 / 3 / 3 / 10;
-  max-width: 837px; 
-  text-indent:30%;
+  max-width: 52.3rem;
+  text-indent: 30%;
   display: grid;
-  height: fit-content;
 }
 
-.customsection-content-wrapper svg{
-  z-index: 1;
+.testimonials-with-image-content-wrapper svg {
   grid-area: 1 / 2 / 4 / 3;
 }
 
-.customsection-content-wrapper .h2{
-  z-index: 2;
+.testimonials-with-image-content-wrapper .h2 {
   line-height: 1;
-  grid-area: 1 / 1 / 1 / 10; 
+  grid-area: 1 / 1 / 1 / 10;
 }
 
 
-.customsection-info{
+.testimonials-with-image-info {
   grid-area: 3 / 3 / 5 / 10;
   text-align: left;
-  padding-left:2rem;
+  padding-left: 2rem;
 }
 
 .custom-rating-badge {
-  flex-wrap: wrap;
-  align-items: center;
-  line-height: normal;
   display: flex;
   padding-bottom: 1rem;
 }
@@ -7706,49 +7697,52 @@ ul {
   position: relative;
 }
 
-.customsection-gradient{
+.testimonials-with-image-gradient {
   grid-area: 1 / 10 / 4 / 12;
   overflow: hidden;
-  height: fit-content;
 }
 
-.customsection-content-inner {
+.testimonials-with-image-content-inner {
   text-align: left;
-  width:800px;
-  background-image: linear-gradient(to right, rgb(var(--text-color) / .35) 0% ,rgba(0,0,0,0) 19%);
+  width: 50rem;
+  background-image: linear-gradient(to right, rgb(var(--text-color) / .35) 0%, rgba(0, 0, 0, 0) 19%);
   color: transparent;
   background-clip: text;
   line-height: 1;
 }
 
+@media screen and (max-width: 700px) {
+  .testimonials-with-image-content-inner {
+    width: 18.75rem;
+  }
+}
 
 @media screen and (max-width: 1000px) {
-  
-    .customsection-image-wrapper {
-      width: 10rem;
-    }
 
-    .customsection-content-wrapper .h2, .customsection-gradient .h2{
-      line-height: 1;
-      font-size:23px;
-      text-align:left
-    }
-
-    .customsection-content-wrapper {
-      grid-area: 1 / 1 / 3 / 10;
-    }
-
-    .customsection-info {
-      grid-area: 3 / 1 / 5 / 10;
-      padding-left:0rem;
-    }
-
-    .customsection-content-wrapper svg{
-      width: 60px;
-    }
-
-    .customsection-content-inner {
-      width:300px;
-    }
-   
+  .testimonials-with-image-image-wrapper {
+    width: 10rem;
   }
+
+  .testimonials-with-image-content-wrapper .h2,
+  .testimonials-with-image-gradient .h2 {
+    line-height: 1;
+    font-size: 23px;
+    text-align: left;
+  }
+
+  .testimonials-with-image-content-wrapper {
+    grid-area: 1 / 1 / 3 / 10;
+  }
+
+  .testimonials-with-image-info {
+    grid-area: 3 / 1 / 5 / 10;
+    padding-left: 0rem;
+  }
+
+  .testimonials-with-image-content-wrapper svg {
+    width: 60px;
+  }
+
+}
+
+/* End of "Testimonials with product" section CSS */
