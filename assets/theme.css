@@ -7619,6 +7619,8 @@ ul {
   overflow: hidden;
 }
 
+/* Custom CSS for "Testimonials with product" section below */  
+
 .customsection-list {
   justify-items: right;
   display: grid;
@@ -7630,9 +7632,7 @@ ul {
   display: grid;
 } 
 
-
 .customsection-wrapper {
-  display:grid;
   grid-area: 1 / 1 / 4 / 2; 
 }
 
@@ -7641,13 +7641,12 @@ ul {
   visibility: hidden;
  }
 
-
 .customsection-carousel {
    display: grid; 
 }
 
 .customsection-subheading{
-  align-items: start;
+  margin-bottom:1rem;
 }
 
 .customsection-subheading-dot {
@@ -7659,8 +7658,6 @@ ul {
 }
 
 .customsection-image-wrapper {
-  position: relative;
-  overflow: hidden;
   width: 14rem;
   display: flex;
   flex-direction: column;
@@ -7668,19 +7665,16 @@ ul {
 
 .customsection-content-wrapper{
   grid-area: 1 / 3 / 3 / 10;
-  max-width: 837px; 
+  max-width: 52.3rem; 
   text-indent:30%;
   display: grid;
-  height: fit-content;
 }
 
 .customsection-content-wrapper svg{
-  z-index: 1;
   grid-area: 1 / 2 / 4 / 3;
 }
 
 .customsection-content-wrapper .h2{
-  z-index: 2;
   line-height: 1;
   grid-area: 1 / 1 / 1 / 10; 
 }
@@ -7693,9 +7687,6 @@ ul {
 }
 
 .custom-rating-badge {
-  flex-wrap: wrap;
-  align-items: center;
-  line-height: normal;
   display: flex;
   padding-bottom: 1rem;
 }
@@ -7709,18 +7700,22 @@ ul {
 .customsection-gradient{
   grid-area: 1 / 10 / 4 / 12;
   overflow: hidden;
-  height: fit-content;
 }
 
 .customsection-content-inner {
   text-align: left;
-  width:800px;
+  width:50rem;
   background-image: linear-gradient(to right, rgb(var(--text-color) / .35) 0% ,rgba(0,0,0,0) 19%);
   color: transparent;
   background-clip: text;
   line-height: 1;
 }
 
+@media screen and (max-width: 700px) {
+  .customsection-content-inner {
+    width: 18.75rem;
+  } 
+}
 
 @media screen and (max-width: 1000px) {
   
@@ -7731,7 +7726,7 @@ ul {
     .customsection-content-wrapper .h2, .customsection-gradient .h2{
       line-height: 1;
       font-size:23px;
-      text-align:left
+      text-align:left;
     }
 
     .customsection-content-wrapper {
@@ -7746,9 +7741,7 @@ ul {
     .customsection-content-wrapper svg{
       width: 60px;
     }
-
-    .customsection-content-inner {
-      width:300px;
-    }
    
   }
+
+  /* End of "Testimonials with product" section CSS */  
